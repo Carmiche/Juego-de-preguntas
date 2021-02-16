@@ -1,0 +1,144 @@
+*{
+	font-family: "Roboto", Sans-serif;
+}
+.titulo-1{
+	text-align: center;
+	margin: 0;
+	color: #fff;
+	background: #a7c;
+	padding: 10px 0;
+	font-family: Verdana;
+}
+.reglas{
+	margin: 0;
+	background: #eee;
+	color: #333;
+	font-family: "Roboto";
+}
+.titulo-2{
+	position: relative;
+	padding: 12px;
+	top: 0;
+	left: 4%;
+	margin: 10px 0;
+	background: #fff;
+	width: 24%;
+	text-align: center;
+	border-radius: 3px;
+}
+.parrafo{
+	margin: 0;
+	padding: 10px 20px;
+}
+.parrafo i{
+	color: #f44;
+}
+.parrafo b{
+	color: #4d4;
+}
+.resultados-juego{
+}
+.resultados-juego-ul{
+	margin: 0;
+}
+.resultados-juego-ul li{
+	position: relative;
+	list-style-type: none;
+	display: inline-block;
+	padding: 20px 0;
+	width: 30%;
+	text-align: center;
+	color: #eee;
+	font-size: 1.2em;
+}
+.resultados-juego-positivo{
+	background: #5c5;
+	left:70%;
+}
+.resultados-juego-negativo{
+	right: 40%;
+	background: #e55;
+}
+.preguntas{
+	font-family: "Roboto";
+	width: 100%;
+}
+.pregunta{
+	margin: 0;
+	color: #fff;
+	background: #a7c;
+	padding: 20px 20px;
+}
+.preguntas ul{
+	margin: 0;
+	background: #eee;
+	height: 100%;
+	padding: 12px 20px;
+}
+.respuestas{
+	list-style-type: none;
+	width: 70%;
+	padding: 13px 10px 13px 35px;
+	margin: 15px auto;
+	color: #333;
+	background: #fff;
+	border-radius: 10px;
+	transition: background .6s, color .3s
+}
+.respuestas:hover{
+	background: #fb6;
+	color: #fff;
+}
+.fondo-boton{
+	background: #eee;
+	text-align: center;
+}
+.boton{
+	background: #a7c;
+	color: #fff;
+	width: 60%;
+	padding: 8px 0;
+	font-size: 1.2em;
+	border-radius: 6px;
+	transition: background .5s, color .3s;
+	font-family: "Roboto";
+	margin: 10px 0 10px;
+}
+.boton:hover{
+	background: #fff;
+	color: #333;
+}
+.false{
+	display: none;
+}
+.footer{
+	margin: 0;
+	background: #333;
+}
+
+.titulo-4{
+	color: #eee;
+	width: 96%;
+	margin: 0;
+	text-align: center;	
+	padding: 15px 5px;
+}
+.footer-ul{
+	margin: 0;	
+}
+.footer-ul li{
+	display: inline-block;
+	width: 45%;
+	list-style-type: none;
+	color: #fff;
+	padding: 5px;
+	text-align: center;
+}
+.footer-ul li a{
+	color: #88f;
+	text-decoration: none;
+	padding: 16px;	
+}
+.footer-ul li a:hover{
+	color: #f88;
+}
