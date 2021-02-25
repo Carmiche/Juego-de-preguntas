@@ -37,6 +37,7 @@
 	color: #4d4;
 }
 .resultados-juego{
+	position: relative;
 }
 .resultados-juego-ul{
 	margin: 0;
@@ -60,6 +61,8 @@
 	background: #e55;
 }
 .preguntas{
+		position: relative;
+
 	font-family: "Roboto";
 	width: 100%;
 }
@@ -108,9 +111,27 @@
 	background: #fff;
 	color: #333;
 }
-.false{
-	display: none;
+.boton.false{
+	opacity: 1;
+	transition: all 1s;
+
 }
+.boton.true{
+	opacity: 0;
+	transition: all .3s;
+}
+.preguntas.false, .resultados-juego.false{
+	top: 40em;
+	height: 0;
+	transition: all .6s;
+	overflow:hidden;
+}
+.preguntas.true, .resultados-juego.true{
+	top: 0;
+	height: 100%;
+	transition: all .6s;
+}
+
 .footer{
 	margin: 0;
 	background: #333;

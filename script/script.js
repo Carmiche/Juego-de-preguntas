@@ -2,12 +2,12 @@ var pro = {
     contadorPositivo: 0,
     contadorNegativo: 0,
     gameOver: 0,
-    gameSave: 0,
     sorteo: 0,
     repeticiones: 0,
     mostrar: false,
     guardado: " ",
     res: " ",
+    s1:0,s2:0,s3:0,s4: 0,
 
 
     divResultados: document.querySelector(".resultados-juego"),
@@ -19,7 +19,7 @@ var pro = {
     botonComenzar: document.querySelector('.boton'),
 
 
-    preguntas: [
+     preguntas: [
         {
             pregunta: '¿Simón Bolivar es el libertador de?',
             respuesta1: 'Venezuela, Colombia, Bolivia, Panamá y Ecuador',
@@ -506,66 +506,85 @@ var pro = {
 */
     ],
 }
+//para comenzar el juego
+
+
+
 var mets = {
     inicio: function() {
         pro.botonComenzar.addEventListener("click", function() {
+            setTimeout(function() {
+                pro.botonComenzar.className = 'boton false';
+
+            }, 500);
+
             if (pro.guardado == " ") {
                 pro.guardado = pro.preguntas;
             }
+            pro.botonComenzar.className = 'boton true';
 
             if (pro.botonComenzar.innerHTML === "Comenzar" || pro.botonComenzar.innerHTML === "Volver a empezar") {
                 pro.sorteo = Math.floor(Math.random() * pro.preguntas.length);
                 pro.botonComenzar.innerHTML = "Terminar";
                 pro.divPreguntas.className = 'preguntas true';
                 pro.divResultados.className = 'resultados-juego true';
+
             } else {
                 pro.botonComenzar.innerHTML = "Volver a empezar";
                 pro.divPreguntas.className = 'preguntas false';
                 pro.divResultados.className = 'resultados-juego false';
+
                 pro.gameOver = 0;
-                pro.gameSave = 0;
                 pro.contadorNegativo = 0;
                 pro.resultadoNegativo.innerHTML = pro.contadorNegativo;
                 pro.contadorPositivo = 0;
                 pro.resultadoPositivo.innerHTML = pro.contadorPositivo;
                 pro.preguntas = pro.guardado;
+
                 for (let i = 0; i < pro.preguntas.length; i++) {
-                    pro.preguntas[i].mostrado = false;
-                };
+                	pro.preguntas[i].mostrado = false
+                }
             }
             mets.respuestas();
+
         })
     },
-    respuestas: function(s1, s2, s3, s4) {
-        if (pro.preguntas[pro.sorteo].mostrado == false) {
-            pro.h3Pregunta.innerHTML = pro.preguntas[pro.sorteo].pregunta;
-            do {
-                s1 = Math.floor(Math.random() * 4);
-                s2 = Math.floor(Math.random() * 4);
-                s3 = Math.floor(Math.random() * 4);
-                s4 = Math.floor(Math.random() * 4);
-            } while (s1 == s2 || s1 == s3 || s1 == s4 ||
-                    s2 == s3 || s3 == s4 || s2 == s4)
-            if (pro.gameOver < 3) {
-                pro.liRespuestas[s1].innerHTML = pro.preguntas[pro.sorteo].respuesta1;
-                pro.liRespuestas[s2].innerHTML = pro.preguntas[pro.sorteo].respuesta2;
-                pro.liRespuestas[s3].innerHTML = pro.preguntas[pro.sorteo].respuesta3;
-                pro.liRespuestas[s4].innerHTML = pro.preguntas[pro.sorteo].respuesta4;
-            } else {
-                pro.h3Pregunta.innerHTML = pro.preguntas[0].pregunta;
-                pro.liRespuestas[0].innerHTML = pro.preguntas[0].respuesta1;
-                pro.liRespuestas[1].innerHTML = pro.preguntas[0].respuesta2;
-                pro.liRespuestas[2].innerHTML = pro.preguntas[0].respuesta3;
-                pro.liRespuestas[3].innerHTML = pro.preguntas[0].respuesta4;
-            }
-        } else {
-            pro.repeticiones = 0
-            while (pro.preguntas[pro.sorteo].mostrado == true || pro.repeticiones <= 100) {
-                pro.sorteo = Math.floor(Math.random() * pro.preguntas.length);
-                pro.repeticiones++;
-                if (pro.repeticiones > 200) {
-                    pro.gameOver = 3
-                    pro.preguntas = [{
+    respuestas: function() {
+
+    	if (pro.preguntas[pro.sorteo].mostrado == false ) {
+
+	        pro.h3Pregunta.innerHTML = pro.preguntas[pro.sorteo].pregunta;
+	        do {
+	            pro.s1 = Math.floor(Math.random() * 4);
+	            pro.s2 = Math.floor(Math.random() * 4);
+	            pro.s3 = Math.floor(Math.random() * 4);
+	            pro.s4 = Math.floor(Math.random() * 4);
+
+	        } while (pro.s1 == pro.s2 || pro.s1 == pro.s3 || pro.s1 == pro.s4 ||
+	            pro.s2 == pro.s3 || pro.s3 == pro.s4 || pro.s2 == pro.s4)
+
+	        if (pro.gameOver < 3) {
+	            pro.liRespuestas[pro.s1].innerHTML = pro.preguntas[pro.sorteo].respuesta1;
+	            pro.liRespuestas[pro.s2].innerHTML = pro.preguntas[pro.sorteo].respuesta2;
+	            pro.liRespuestas[pro.s3].innerHTML = pro.preguntas[pro.sorteo].respuesta3;
+	            pro.liRespuestas[pro.s4].innerHTML = pro.preguntas[pro.sorteo].respuesta4;
+	        } else {
+	        	pro.h3Pregunta.innerHTML = pro.preguntas[0].pregunta;
+	            pro.liRespuestas[0].innerHTML = pro.preguntas[0].respuesta1;
+	            pro.liRespuestas[1].innerHTML = pro.preguntas[0].respuesta2;
+	            pro.liRespuestas[2].innerHTML = pro.preguntas[0].respuesta3;
+	            pro.liRespuestas[3].innerHTML = pro.preguntas[0].respuesta4;
+	        }
+        }
+        else{
+        	pro.repeticiones = 0
+       		 while (pro.preguntas[pro.sorteo].mostrado == true || pro.repeticiones <= 100) {
+       		 	pro.sorteo = Math.floor(Math.random() * pro.preguntas.length);
+	         	pro.repeticiones++;
+	         	if (pro.repeticiones > 200) {
+
+	         		pro.gameOver = 3
+	         		pro.preguntas = [{
                         pregunta: "Haz completado el juego",
                         respuesta1: "Numero de aciertos",
                         respuesta2: pro.contadorPositivo,
@@ -573,69 +592,91 @@ var mets = {
                         respuesta4: pro.contadorNegativo,
                         mostrado: false
                     }]
-                    pro.h3Pregunta.innerHTML = pro.preguntas[0].pregunta;
-                    pro.liRespuestas[0].innerHTML = pro.preguntas[0].respuesta1;
-                    pro.liRespuestas[1].innerHTML = pro.preguntas[0].respuesta2;
-                    pro.liRespuestas[2].innerHTML = pro.preguntas[0].respuesta3;
-                    pro.liRespuestas[3].innerHTML = pro.preguntas[0].respuesta4;
-                };
-            }
-            if (pro.preguntas[pro.sorteo].mostrado == false) {
-                mets.respuestas();
+                    pro.h3Pregunta.innerHTML = pro.preguntas[0].pregunta
+	           		pro.liRespuestas[0].innerHTML = pro.preguntas[0].respuesta1;
+	            	pro.liRespuestas[1].innerHTML = pro.preguntas[0].respuesta2;
+	           		pro.liRespuestas[2].innerHTML = pro.preguntas[0].respuesta3;
+	            	pro.liRespuestas[3].innerHTML = pro.preguntas[0].respuesta4;
+	         	};
+       		 }
+       		 if (pro.preguntas[pro.sorteo].mostrado == false) {
+            	mets.respuestas();
 
-            };
+       		 };
+
         }
     },
     respondio: function() {
+
         for (let i = 0; i < pro.liRespuestas.length; i++) {
-            pro.liRespuestas[i].addEventListener("click", function(res) {
-                if (pro.gameOver < 3) {
-                    pro.res = res.target.innerHTML;
-                }
 
-                if (pro.res == pro.preguntas[pro.sorteo].respuesta1 && pro.gameOver < 3) {
-                    pro.contadorPositivo++;
-                    pro.gameSave++;
-                    if (pro.gameSave == 10) {
-                        pro.gameSave = 0;
-                        pro.gameOver--;
-                    };
-                    pro.resultadoPositivo.innerHTML = pro.contadorPositivo;
 
-                } else if (pro.gameOver < 3) {
-                    pro.contadorNegativo++;
-                    pro.gameOver++;
-                    pro.resultadoNegativo.innerHTML = pro.contadorNegativo;
-                }
-                if (pro.gameOver >= 3) {
-                    pro.preguntas = [{
-                        pregunta: "Haz completado el juego",
-                        respuesta1: "Numero de aciertos",
-                        respuesta2: pro.contadorPositivo,
-                        respuesta3: "Numero de fallos",
-                        respuesta4: pro.contadorNegativo,
-                        mostrado: false
+                pro.liRespuestas[i].addEventListener("click", function(res) {
+                    if (pro.gameOver < 3) {
+                        pro.res = res.target.innerHTML;
+                        console.log(pro.res);
+                    }
 
-                    }]
-                    pro.h3Pregunta.innerHTML = pro.preguntas[0].pregunta;
-                    pro.liRespuestas[0].innerHTML = pro.preguntas[0].respuesta1;
-                    pro.liRespuestas[1].innerHTML = pro.preguntas[0].respuesta2;
-                    pro.liRespuestas[2].innerHTML = pro.preguntas[0].respuesta3;
-                    pro.liRespuestas[3].innerHTML = pro.preguntas[0].respuesta4;
+                    if (pro.res == pro.preguntas[pro.sorteo].respuesta1 && pro.gameOver < 3) {
+                        pro.contadorPositivo++;
+                        pro.resultadoPositivo.innerHTML = pro.contadorPositivo;
 
-                }
-                if (pro.preguntas.length == 1 || pro.gameOver >= 3) {
-                    pro.preguntas[0].mostrado = false;
+                    } else if (pro.gameOver < 3) {
+                        pro.contadorNegativo++;
+                        pro.gameOver++;
+                        pro.resultadoNegativo.innerHTML = pro.contadorNegativo;
+                    } 
+                    if (pro.gameOver >= 3) {
+                        pro.preguntas = [{
+                            pregunta: "Haz completado el juego",
+                            respuesta1: "Numero de aciertos",
+                            respuesta2: pro.contadorPositivo,
+                            respuesta3: "Numero de fallos",
+                            respuesta4: pro.contadorNegativo,
+                            mostrado: false
 
-                } else {
+                        }]
+                        pro.h3Pregunta.innerHTML = pro.preguntas[0].pregunta;
+    	            	pro.liRespuestas[0].innerHTML = pro.preguntas[0].respuesta1;
+    	            	pro.liRespuestas[1].innerHTML = pro.preguntas[0].respuesta2;
+    	           		pro.liRespuestas[2].innerHTML = pro.preguntas[0].respuesta3;
+    	           		pro.liRespuestas[3].innerHTML = pro.preguntas[0].respuesta4;
 
-                    pro.preguntas[pro.sorteo].mostrado = true;
-                }
-                pro.sorteo = Math.floor(Math.random() * pro.preguntas.length);
-                mets.respuestas();
-            })
+                    }
+                    
+    				if (pro.preguntas.length == 1 || pro.gameOver >= 3) {
+    					pro.preguntas[0].mostrado = false;
+
+    				}else{
+
+    					pro.preguntas[pro.sorteo].mostrado = true;
+    				}
+                    pro.sorteo = Math.floor(Math.random() * pro.preguntas.length);
+                   
+
+                    pro.liRespuestas[pro.s1].style.background = "#3d3";
+                    pro.liRespuestas[pro.s2].style.background = "#f44";
+                    pro.liRespuestas[pro.s3].style.background = "#f44";
+                    pro.liRespuestas[pro.s4].style.background = "#f44";
+                   setTimeout(function(){
+                    pro.liRespuestas[pro.s1].style.background = "#fff";
+                    pro.liRespuestas[pro.s2].style.background = "#fff";
+                    pro.liRespuestas[pro.s3].style.background = "#fff";
+                    pro.liRespuestas[pro.s4].style.background = "#fff";
+                    mets.respuestas();
+                   },1000)
+                })
+
         }
+
     },
 }
+
 mets.inicio();
 mets.respondio()
+
+
+
+//ahora es necesario encontrar la manera de 
+//tener la respuesta correcta y las incorrectas mostrarlos
+//100% funcional pero con uno que otro bug
